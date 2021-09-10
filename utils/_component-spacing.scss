@@ -1,3 +1,4 @@
+
 @function nested($state) {
   @if ($state) {
     @return '&';
@@ -5,36 +6,52 @@
   @return '';
 }
 
-@mixin createSpacingStyles($nested: false) {
-  $spacingClassNameProps: (
-    margin $marginClassName $marginDirection $componentMargin,
-    padding $paddingClassName $paddingDirection $componentPadding
-  );
+@mixin createStyles($property, $className, $directions, $spacingMap, $nested) {
   $nestedSelector: nested($nested);
 
-  @each $property, $className, $directions, $map in $spacingClassNameProps {
-    @each $option, $value in $map {
-      #{$nestedSelector}.#{$className}-#{$option} {
-        @each $direction, $name in $directions {
-          #{$property}-#{$direction}: #{$value};
-        }
-      }
+  @each $option, $value in $spacingMap {
+    #{$nestedSelector}.#{$className}-#{$option} {
       @each $direction, $name in $directions {
-        #{$nestedSelector}.#{$className}-#{$name}-#{$option} {
-          #{$property}-#{$direction}: $value;
-        }
+        #{$property}-#{$direction}: #{$value};
+      }
+    }
+
+    @each $direction, $name in $directions {
+      #{$nestedSelector}.#{$className}-#{$name}-#{$option} {
+        #{$property}-#{$direction}: $value;
       }
     }
   }
 }
 
-@mixin createNestedSpacingStyles() {
-  @include createSpacingStyles(true);
+@mixin createPaddingStyles($spacingMap: $componentPadding, $nested: false) {
+  @include createStyles(padding, $paddingClassName, $paddingDirection, $spacingMap, $nested);
+}
+
+@mixin createMarginStyles($spacingMap: $componentMargin, $nested: false) {
+  @include createStyles(margin, $marginClassName, $marginDirection, $spacingMap, $nested);
+}
+
+@mixin createSpacingStyles($spacingMap: $componentSpacing, $nested: false) {
+  @include createMarginStyles($spacingMap, $nested);
+  @include createPaddingStyles($spacingMap, $nested);
+}
+
+@mixin createAppendedSpacingStyles($spacingMap: $componentSpacing) {
+  @include createSpacingStyles($spacingMap, true);
+}
+
+@mixin createAppendedMarginStyles($spacingMap: $componentMargin) {
+  @include createMarginStyles($spacingMap, true);
+}
+
+@mixin createAppendedPaddingStyles($spacingMap: $componentPadding) {
+  @include createPaddingStyles($spacingMap, true);
 }
 
 @mixin checkPicksTotal($list) {
   @if (length($list) >= 3) {
-    @error 'Your list can not contain more than 3 items 👀';
+    @error 'Your list can not contain more than 3 items';
   }
 }
 
