@@ -7,8 +7,8 @@
 
 @mixin createSpacingStyles($nested: false) {
   $spacingClassNameProps: (
-    margin 'margin' $marginDirection $componentMargin,
-    padding 'padding' $paddingDirection $componentPadding
+    margin $marginClassName $marginDirection $componentMargin,
+    padding $paddingClassName $paddingDirection $componentPadding
   );
   $nestedSelector: nested($nested);
 
