@@ -5,12 +5,11 @@ Create spacing between components with ease 💅
 When I develop UI for platforms with a CMS there is often a need for a system where the CMS Author or developer can create spacing (margins and/or paddings) between components. This package provides a way to configure and manage these spacings manually or through classes added by a CMS.
 
 ## TL;DR:
-You can find the example configuration HERE
-
+todo
 
 
 ## Installment
-
+todo
 
 
 ## Configuration
@@ -72,7 +71,7 @@ $componentSpacing: (
   normal: 30px,
 );
 
-@include createSpacingStyles;
+@include create-spacing-styles;
 ```
 This will output the following class names (for the sake of example the styles are not shown):
 ```css
@@ -101,12 +100,12 @@ This will output the following class names (for the sake of example the styles a
 .padding-bottom-normal {}
 ```
 
-If you only need margins or paddings you could also use the mixins `createPaddingStyles` or `createMarginStyles`.
+If you only need margins or paddings you could also use the mixins `create-padding-styles` or `create-margin-styles`.
 
 If you want to create more specificity you can use a nested mixin:
 ```scss
 [data-component] {
-  @include createAppendedSpacingStyles();
+  @include create-appended-spacing-styles();
 }
 ```
 Which will not nest the styles but append it to the parent:
@@ -139,7 +138,7 @@ This can be done by the developer by:
 Or handled by the backend by adding classes that are compiled:
 ```scss
 [data-component] {
-  @include createAppendedSpacingStyles();
+  @include create-appended-spacing-styles();
 }
 ```
 ```html
@@ -149,8 +148,8 @@ Or handled by the backend by adding classes that are compiled:
 There are also options to only add appended styles for margins and paddings:
 ```scss
 [data-component] {
-  @include createAppendedMarginStyles();
-  @include createAppendedPaddingStyles();
+  @include create-appended-margin-styles();
+  @include create-appended-padding-styles();
 }
 ```
 
@@ -207,21 +206,16 @@ $desktopSpacings: (
 );
 
 [data-component] {
-  @include createAppendedSpacingStyles($mobileSpacings);
+  @include create-appended-spacing-styles($mobileSpacings);
   
   @media ('min-width: 1024px') {
-    @include createAppendedSpacingStyles($desktopSpacings);   
+    @include create-appended-spacing-styles($desktopSpacings);   
   }
 }
 ```
 
-
-
-
-
-
-### Configuration setup example
-
+## Configuration setup example
+todo
 
 ## To-dos
 -[ ] Create a version with logical properties instead of *-top/*-bottom values
