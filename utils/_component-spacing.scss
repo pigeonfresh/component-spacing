@@ -1,0 +1,69 @@
+@function nested($state) {
+  @if ($state) {
+    @return '&';
+  }
+  @return '';
+}
+
+@mixin createSpacingStyles($nested: false) {
+  $spacingClassNameProps: (
+    margin 'margin' $marginDirection $componentMargin,
+    padding 'padding' $paddingDirection $componentPadding
+  );
+  $nestedSelector: nested($nested);
+
+  @each $property, $className, $directions, $map in $spacingClassNameProps {
+    @each $option, $value in $map {
+      #{$nestedSelector}.#{$className}-#{$option} {
+        @each $direction, $name in $directions {
+          #{$property}-#{$direction}: #{$value};
+        }
+      }
+      @each $direction, $name in $directions {
+        #{$nestedSelector}.#{$className}-#{$name}-#{$option} {
+          #{$property}-#{$direction}: $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin createNestedSpacingStyles() {
+  @include createSpacingStyles(true);
+}
+
+@mixin checkPicksTotal($list) {
+  @if (length($list) >= 3) {
+    @error 'Your list can not contain more than 3 items 👀';
+  }
+}
+
+@mixin checkSpacingPicks($list, $map) {
+  @each $pick in $list {
+    @if map-has-key($map, $pick) {
+    } @else {
+      @error 'It seems the value "#{$pick}" doesn\'t exist 😢';
+    }
+  }
+}
+
+@mixin check($picks, $map) {
+  @include checkPicksTotal($picks);
+  @include checkSpacingPicks($picks, $map);
+}
+
+@function getSpacingValue($spacingPick, $map) {
+  @return map-get($map, $spacingPick);
+}
+
+@mixin component-padding($spacing: $defaultComponentPadding, $map: $componentPadding) {
+  @include check($spacing, $map);
+  padding-top: getSpacingValue(nth($spacing, 1), $map);
+  padding-bottom: getSpacingValue(nth($spacing, -1), $map);
+}
+
+@mixin component-margin($spacing: $defaultComponentMargin, $map: $componentMargin) {
+  @include check($spacing, $map);
+  margin-top: getSpacingValue(nth($spacing, 1), $map);
+  margin-bottom: getSpacingValue(nth($spacing, -1), $map);
+}
