@@ -1,0 +1,31 @@
+{
+  "name": "component-spacing",
+  "version": "1.0.0",
+  "description": "Create spacing between components with ease",
+  "main": "index.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pigeonfresh/component-spacing.git"
+  },
+  "keywords": [
+    "sass",
+    "scss",
+    "mixins",
+    "spacing",
+    "cms-components",
+    "margin",
+    "padding"
+  ],
+  "author": "pigeonfresh <hello@pigeonfresh.dev>",
+  "bugs": {
+    "url": "https://github.com/pigeonfresh/component-spacing/issues"
+  },
+  "homepage": "https://github.com/pigeonfresh/component-spacing#readme",
+  "license": "Unlicense",
+  "devDependencies": {
+    "prettier": "^2.4.0"
+  }
+}
