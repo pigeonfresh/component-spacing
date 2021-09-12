@@ -44,10 +44,11 @@ $marginClassName: 'padding';
 ## Installment
 ```shell
 $ yarn add component-spacing
-``
+```
+or
 ```shell
 $ npm i -S component-spacing
-```   
+```
 
 And import it in your main scss files (mind the ~)
 ```scss
