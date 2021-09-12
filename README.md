@@ -4,13 +4,57 @@ Create spacing between components with ease 💅
 ## Introduction
 When I develop UI for platforms with a CMS there is often a need for a system where the CMS Author or developer can create spacing (margins and/or paddings) between components. This package provides a way to configure and manage these spacings manually or through classes added by a CMS.
 
-## TL;DR:
-todo
+## Base example:
+If you just want to get started and have everything installed you can just copy this and change/modify:
+```scss
+@import "~component-spacing";
 
+$componentSpacing: (
+  none: 0,
+  small: 20px, 
+  medium: 40px,
+  large: 80px,
+);
+
+$defaultComponentSpacing: medium;
+
+// The following variables are default so only copy them if you want to adjust them.
+// This will create classNames like '.margin-top-large'
+
+$spacingDirections: (top: 'top', bottom: 'bottom');
+$marginClassName: 'margin';
+$marginClassName: 'padding';
+
+// If you want to create classNames you can use normal classNames or appended to its parent.
+// .margin-top-large or [data-component].margin-top-large
+
+@include create-spacing-styles();
+
+[data-component] {
+  @include create-appended-spacing-styles();
+}
+
+// if you want to use the component spacing in scss you can use the mixins like so:
+.foo-component {
+  @include component-margin(large);
+  @include component-padding(none medium);
+}
+```
 
 ## Installment
-todo
+```shell
+$ yarn add component-spacing
+``
+```shell
+$ npm i -S component-spacing
+```
 
+And import it in your main scss files (mind the ~)
+```scss
+@import "~component-spacing";
+```
+
+After that you can configure your settings
 
 ## Configuration
 
@@ -51,15 +95,13 @@ It's possible to configure different defaults for margin and padding:
 ```scss
 $defaultComponentMargin: none;
 $defaultComponentPadding: medium;
-```
-They will fallback to `$defaultComponentSpacing` if their variable is not specified.
 
-```scss
 [data-component="rich-text"] {
   @include component-padding(); // medium padding
   @include component-margin(); // no margin
 }
 ```
+They will fallback to `$defaultComponentSpacing` if their variable is not specified.
 
 
 ### Configuring class names
@@ -128,6 +170,7 @@ This can be done by the developer by:
   @include component-margin(large);
   @include component-padding(medium);
 }
+
 // It's possible to have a different spacing for top and bottom by adding a second item
 [data-component="footer"] {
   @include component-margin(large none);
@@ -213,9 +256,6 @@ $desktopSpacings: (
   }
 }
 ```
-
-## Configuration setup example
-todo
 
 ## To-dos
 -[ ] Create a version with logical properties instead of *-top/*-bottom values
