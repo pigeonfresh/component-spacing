@@ -47,7 +47,7 @@ $ yarn add component-spacing
 ``
 ```shell
 $ npm i -S component-spacing
-```
+```   
 
 And import it in your main scss files (mind the ~)
 ```scss
