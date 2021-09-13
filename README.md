@@ -37,7 +37,7 @@ $marginClassName: 'padding';
 // if you want to use the component spacing in scss you can use the mixins like so:
 .foo-component {
   @include component-margin(large);
-  @include component-padding(none medium);
+  @include component-padding(none, medium);
 }
 ```
 
@@ -45,7 +45,6 @@ $marginClassName: 'padding';
 ```shell
 $ yarn add component-spacing
 ```
-or
 ```shell
 $ npm i -S component-spacing
 ```
@@ -172,10 +171,10 @@ This can be done by the developer by:
   @include component-padding(medium);
 }
 
-// It's possible to have a different spacing for top and bottom by adding a second item
+// It's possible to have a different spacing for top and bottom by adding a second argument
 [data-component="footer"] {
-  @include component-margin(large none);
-  @include component-padding(medium large);
+  @include component-margin(large, none);
+  @include component-padding(medium, large);
 }
 ```
 

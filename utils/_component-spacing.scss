@@ -72,14 +72,14 @@
   @include check-pick($picks, $map);
 }
 
-@mixin component-padding($spacing: $defaultComponentPadding, $map: $componentPadding) {
-  @include check($spacing, $map);
-  padding-top: get-spacing-value(nth($spacing, 1), $map);
-  padding-bottom: get-spacing-value(nth($spacing, -1), $map);
+@mixin component-padding($startSpacing: $defaultComponentPadding, $endSpacing: $startSpacing, $map: $componentPadding) {
+  @include check-pick($startSpacing $endSpacing, $map);
+  padding-top: get-spacing-value($startSpacing, $map);
+  padding-bottom: get-spacing-value($endSpacing, $map);
 }
 
-@mixin component-margin($spacing: $defaultComponentMargin, $map: $componentMargin) {
-  @include check($spacing, $map);
-  margin-top: get-spacing-value(nth($spacing, 1), $map);
-  margin-bottom: get-spacing-value(nth($spacing, -1), $map);
+@mixin component-margin($startSpacing: $defaultComponentMargin, $endSpacing: $startSpacing, $map: $componentMargin) {
+  @include check-pick($startSpacing $endSpacing, $map);
+  margin-top: get-spacing-value($startSpacing, $map);
+  margin-bottom: get-spacing-value($endSpacing, $map);
 }
