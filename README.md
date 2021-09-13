@@ -16,10 +16,10 @@ $componentSpacing: (
   large: 80px,
 );
 
-$defaultComponentSpacing: medium;
-
 // The following variables are default so only copy them if you want to adjust them.
 // This will create classNames like '.margin-top-large'
+$defaultComponentPadding: none;
+$defaultComponentMargin: none;
 
 $spacingDirections: (top: 'top', bottom: 'bottom');
 $marginClassName: 'margin';
@@ -87,11 +87,8 @@ $componentSpacing: (
 ```
 
 ### Setting defaults for scss
-If during development you encounter a situation where you have a default value you can consider configuring this by setting `$defaultComponentSpacing` to the key with the default value: 
-```scss
-$defaultComponentSpacing: normal;
-```
-It's possible to configure different defaults for margin and padding:
+If during development you encounter a situation where you have a default value other than none you can consider configuring this by setting `$defaultComponentMargin` and `$defaultComponentPadding` to a different key: 
+
 ```scss
 $defaultComponentMargin: none;
 $defaultComponentPadding: medium;
@@ -101,7 +98,6 @@ $defaultComponentPadding: medium;
   @include component-margin(); // no margin
 }
 ```
-They will fallback to `$defaultComponentSpacing` if their variable is not specified.
 
 
 ### Configuring class names

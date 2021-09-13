@@ -8,9 +8,9 @@ $componentSpacing: (
 $componentMargin: $componentSpacing;
 $componentPadding: $componentSpacing;
 
-$defaultComponentSpacing: medium;
-$defaultComponentPadding: null;
-$defaultComponentMargin: null;
+$defaultComponentSpacing: none;
+$defaultComponentPadding: none;
+$defaultComponentMargin: none;
 
 $spacingDirections: (
   top: 'top',

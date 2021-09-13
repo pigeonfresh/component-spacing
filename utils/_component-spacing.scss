@@ -67,30 +67,19 @@
   }
 }
 
-@function checkValue($value, $fallback) {
-  @if ($value) {
-    @return $value;
-  } @else {
-    @return $fallback;
-  }
-}
-
-
 @mixin check($picks, $map) {
   @include check-picks-total($picks);
   @include check-pick($picks, $map);
 }
 
-@mixin component-padding($startSpacing: null, $endValue: $startSpacing, $map: $componentPadding) {
-  $startValue: checkValue($startSpacing, checkValue($defaultComponentPadding, $defaultComponentSpacing));
-  @include check-pick($startValue $endValue, $map);
-  padding-top: get-spacing-value($startValue, $map);
-  padding-bottom: get-spacing-value($endValue, $map);
+@mixin component-padding($startSpacing, $endSpacing: $startSpacing, $map: $componentPadding) {
+  @include check-pick($startSpacing $endSpacing, $map);
+  padding-top: get-spacing-value($startSpacing, $map);
+  padding-bottom: get-spacing-value($endSpacing, $map);
 }
 
-@mixin component-margin($startSpacing: null, $endValue: $startSpacing, $map: $componentMargin) {
-  $startValue: checkValue($startSpacing, checkValue($defaultComponentMargin, $defaultComponentSpacing));
-  @include check-pick($startValue $endValue, $map);
-  margin-top: get-spacing-value($startValue, $map);
-  margin-bottom: get-spacing-value($endValue, $map);
+@mixin component-margin($startSpacing: $defaultComponentMargin, $endSpacing: $startSpacing, $map: $componentMargin) {
+  @include check-pick($startSpacing $endSpacing, $map);
+  margin-top: get-spacing-value($startSpacing, $map);
+  margin-bottom: get-spacing-value($endSpacing, $map);
 }

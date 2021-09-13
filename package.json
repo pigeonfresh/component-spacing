@@ -1,6 +1,6 @@
 {
   "name": "component-spacing",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Create spacing between components with ease",
   "main": "index.scss",
   "scripts": {
