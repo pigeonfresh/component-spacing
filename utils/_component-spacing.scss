@@ -81,17 +81,15 @@
   @include check-pick($picks, $map);
 }
 
-@mixin component-padding($startSpacing, $endSpacing, $map: $componentPadding) {
+@mixin component-padding($startSpacing: null, $endValue: $startSpacing, $map: $componentPadding) {
   $startValue: checkValue($startSpacing, checkValue($defaultComponentPadding, $defaultComponentSpacing));
-  $endValue: checkValue($endSpacing, $startValue);
   @include check-pick($startValue $endValue, $map);
   padding-top: get-spacing-value($startValue, $map);
   padding-bottom: get-spacing-value($endValue, $map);
 }
 
-@mixin component-margin($startSpacing, $endSpacing, $map: $componentMargin) {
+@mixin component-margin($startSpacing: null, $endValue: $startSpacing, $map: $componentMargin) {
   $startValue: checkValue($startSpacing, checkValue($defaultComponentMargin, $defaultComponentSpacing));
-  $endValue: checkValue($endSpacing, $startValue);
   @include check-pick($startValue $endValue, $map);
   margin-top: get-spacing-value($startValue, $map);
   margin-bottom: get-spacing-value($endValue, $map);
