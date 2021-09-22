@@ -273,6 +273,17 @@ $componentPadding: $componentSpacing;
 // Create default paddings for the use with mixins if needed
 $defaultPadding: default;
 $defaultMargin: large;
+
+// use a combination of the following mixins to create styles and delete the others
+@include spacing-styles();
+@include padding-styles();
+@include margin-styles();
+
+.foo {
+  @include appended-spacing-styles();
+  @include appended-padding-styles();
+  @include appended-margin-styles();
+}
 ```
 
 
