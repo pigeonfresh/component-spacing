@@ -285,7 +285,3 @@ $defaultMargin: large;
   @include appended-margin-styles();
 }
 ```
-
-
-
-
