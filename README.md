@@ -26,9 +26,9 @@ After that you can configure your settings
 ## Configuration
 
 ### Vertical vs Horizontal
-This package assumes you will want to use margins and paddings on the block-axis (in many cases: top to bottom). If you want to create a spacing system for side scrolling websites you can set the vertical prop to true:
+This package assumes you will want to use margins and paddings on the block-axis (in many cases: top to bottom). If you want to create a spacing system for side scrolling websites you can set the vertical prop to false:
 ```scss
-$vertical: true;
+$vertical: false;
 ```
 ### Logical properties
 By default, [logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties) are being used. This means that for `top`, `bottom`, `left` and `right` logical properties will be used like: `inline-start` and `block-end`. Many website will have a "top to bottom"-layout, but for "left to right" support `inline-start` and `inline-end` are very useful.
