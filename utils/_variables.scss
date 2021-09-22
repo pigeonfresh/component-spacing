@@ -1,23 +1,30 @@
-$componentSpacing: (
-  none: 0,
-  small: 30px,
-  medium: 60px,
-  large: 120px,
+$uniformSpacing: false;
+$variableSpacing: true;
+$vertical: true;
+$logicalProperties: true;
+$componentMargin: ();
+$componentPadding: ();
+$directionProperties: null;
+$defaultPadding: null;
+$defaultMargin: null;
+$classNameConfig: (
+  padding: 'padding',
+  margin: 'margin',
+  direction: 'start' 'end',
 );
 
-$componentMargin: $componentSpacing;
-$componentPadding: $componentSpacing;
+@if ($vertical) {
+  @if ($logicalProperties) {
+    $directionProperties: ('block-start' 'block-end');
+  } @else {
+    $directionProperties: ('top' 'bottom');
+  }
+} @else {
+  @if ($logicalProperties) {
+    $directionProperties: ('inline-start' 'inline-end');
+  } @else {
+    $directionProperties: ('left' 'right');
+  }
+}
 
-$defaultComponentSpacing: none;
-$defaultComponentPadding: none;
-$defaultComponentMargin: none;
 
-$spacingDirections: (
-  top: 'top',
-  bottom: 'bottom',
-);
-$marginDirection: $spacingDirections;
-$paddingDirection: $spacingDirections;
-
-$marginClassName: 'margin';
-$paddingClassName: 'padding';

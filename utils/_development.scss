@@ -1,0 +1,38 @@
+@mixin component-margin-styles() {
+  @include create-margins();
+}
+
+@mixin appended-component-margin-styles() {
+  @include create-margins(true);
+}
+
+@mixin component-padding-styles() {
+  @include create-padding();
+}
+
+@mixin appended-component-padding-styles() {
+  @include create-padding(true);
+}
+
+@mixin spacing-styles($appended: false) {
+  @include create-margins($appended);
+  @include create-padding($appended);
+}
+
+@mixin appended-spacing-styles() {
+  @include spacing-styles(true);
+}
+
+@mixin component-padding(
+  $startPick: $defaultPadding,
+  $endPick: $startPick,
+  $map: $componentPadding
+) {
+  @include check-picks($startPick $endPick, $map);
+  @include getStyles($startPick, $endPick, $map, 'padding');
+}
+
+@mixin component-margin($startPick: $defaultMargin, $endPick: $startPick, $map: $componentMargin) {
+  @include check-picks($startPick $endPick, $map);
+  @include getStyles($startPick, $endPick, $map, 'margin');
+}

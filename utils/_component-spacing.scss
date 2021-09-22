@@ -1,85 +1,73 @@
-@function nested($state) {
+@mixin check-picks($picks, $map) {
+  @each $pick in $picks {
+    @if map-has-key($map, $pick) {
+    } @else {
+      @error 'It seems the value \'#{$pick}\' doesn\'t exist 😢';
+    }
+  }
+}
+
+@function get-value($pick, $map) {
+  @return map-get($map, $pick);
+}
+
+@function appended($state) {
   @if ($state) {
     @return '&';
   }
   @return '';
 }
 
-@function get-spacing-value($spacingPick, $map) {
-  @return map-get($map, $spacingPick);
-}
+@mixin getStyles($startPick, $endPick, $map, $property) {
+  $startValue: get-value($startPick, $map);
+  $endValue: get-value($endPick, $map);
 
-@mixin create-styles($property, $className, $directions, $spacingMap, $nested) {
-  $nestedSelector: nested($nested);
-
-  @each $option, $value in $spacingMap {
-    #{$nestedSelector}.#{$className}-#{$option} {
-      @each $direction, $name in $directions {
-        #{$property}-#{$direction}: #{$value};
-      }
-    }
-
-    @each $direction, $name in $directions {
-      #{$nestedSelector}.#{$className}-#{$name}-#{$option} {
-        #{$property}-#{$direction}: $value;
-      }
-    }
-  }
-}
-
-@mixin create-padding-styles($spacingMap: $componentPadding, $nested: false) {
-  @include create-styles(padding, $paddingClassName, $paddingDirection, $spacingMap, $nested);
-}
-
-@mixin create-margin-styles($spacingMap: $componentMargin, $nested: false) {
-  @include create-styles(margin, $marginClassName, $marginDirection, $spacingMap, $nested);
-}
-
-@mixin create-spacing-styles($spacingMap: $componentSpacing, $nested: false) {
-  @include create-margin-styles($spacingMap, $nested);
-  @include create-padding-styles($spacingMap, $nested);
-}
-
-@mixin create-appended-spacing-styles($spacingMap: $componentSpacing) {
-  @include create-spacing-styles($spacingMap, true);
-}
-
-@mixin create-appended-margin-styles($spacingMap: $componentMargin) {
-  @include create-margin-styles($spacingMap, true);
-}
-
-@mixin create-appended-padding-styles($spacingMap: $componentPadding) {
-  @include create-padding-styles($spacingMap, true);
-}
-
-@mixin check-picks-total($list) {
-  @if (length($list) >= 3) {
-    @error 'Your list can not contain more than 3 items';
-  }
-}
-
-@mixin check-pick($list, $map) {
-  @each $pick in $list {
-    @if map-has-key($map, $pick) {
+  @if ($logicalProperties) {
+    @if ($vertical) {
+      #{$property}-block-start: $startValue;
+      #{$property}-block-end: $endValue;
     } @else {
-      @error 'It seems the value "#{$pick}" doesn\'t exist 😢';
+      #{$property}-inline-start: $startValue;
+      #{$property}-inline-end: $endValue;
+    }
+  } @else {
+    @if ($vertical) {
+      #{$property}-top: $startValue;
+      #{$property}-bottom: $endValue;
+    } @else {
+      #{$property}-left: $startValue;
+      #{$property}-right: $endValue;
     }
   }
 }
 
-@mixin check($picks, $map) {
-  @include check-picks-total($picks);
-  @include check-pick($picks, $map);
+@mixin construct-classes($spacingType, $map, $appended: false) {
+  $appendedSelector: appended($appended);
+
+  @each $spacingName, $value in $map {
+    @if ($uniformSpacing) {
+      #{$appendedSelector}.#{$spacingType}-#{$spacingName} {
+        @each $direction in $directionProperties {
+          #{$direction}: #{$value};
+        }
+      }
+    }
+
+    @if ($variableSpacing) {
+      @each $direction in $directionProperties {
+        $index: index($directionProperties, $direction);
+        #{$appendedSelector}.#{map-get($classNameConfig, $spacingType)}-#{nth(map-get($classNameConfig, direction), $index)}-#{$spacingName} {
+          #{$spacingType}-#{$direction}: #{$value};
+        }
+      }
+    }
+  }
 }
 
-@mixin component-padding($startSpacing: $defaultComponentPadding, $endSpacing: $startSpacing, $map: $componentPadding) {
-  @include check-pick($startSpacing $endSpacing, $map);
-  padding-top: get-spacing-value($startSpacing, $map);
-  padding-bottom: get-spacing-value($endSpacing, $map);
+@mixin create-margins($appended: false) {
+  @include construct-classes('margin', $componentMargin, $appended);
 }
 
-@mixin component-margin($startSpacing: $defaultComponentMargin, $endSpacing: $startSpacing, $map: $componentMargin) {
-  @include check-pick($startSpacing $endSpacing, $map);
-  margin-top: get-spacing-value($startSpacing, $map);
-  margin-bottom: get-spacing-value($endSpacing, $map);
+@mixin create-padding($appended: false) {
+  @include construct-classes('padding', $componentPadding, $appended);
 }
