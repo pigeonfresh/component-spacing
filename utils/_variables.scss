@@ -1,12 +1,16 @@
-$uniformSpacing: false;
-$variableSpacing: true;
 $vertical: true;
 $logicalProperties: true;
+
+$directionProperties: null;
+
 $componentMargin: ();
 $componentPadding: ();
-$directionProperties: null;
+
+$uniformSpacing: false;
+$variableSpacing: true;
 $defaultPadding: null;
 $defaultMargin: null;
+
 $classNameConfig: (
   padding: 'padding',
   margin: 'margin',
