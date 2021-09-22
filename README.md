@@ -26,7 +26,7 @@ After that you can configure your settings
 ## Configuration
 
 ### Vertical vs Horizontal
-This package assumes you will want to use margins and paddings on the block-axis (for in man cases: top to bottom). If you want to create a spacing system for side scrolling websites you can set the vertical prop to true:
+This package assumes you will want to use margins and paddings on the block-axis (in many cases: top to bottom). If you want to create a spacing system for side scrolling websites you can set the vertical prop to true:
 ```scss
 $vertical: true;
 ```
