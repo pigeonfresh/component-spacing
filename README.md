@@ -1,10 +1,14 @@
 # component-spacing
 Create spacing between components with ease 💅
 
-## Introduction {#introduction}
+## Give me the goods
+If you know what you are doing you can [dive right in here](#usage).
+
+
+## Introduction
 When I develop UI for platforms with a CMS there is often a need for a system where the CMS Author or developer can create spacing (margins and/or paddings) between components. In some cases these need to be configurable in the CMS. This package provides a way to configure and manage these spacings manually or through classes added by a CMS.
 
-## Installment {#installment}
+## Installment
 ```shell
 $ yarn add component-spacing
 ```
