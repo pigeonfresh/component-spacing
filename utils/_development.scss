@@ -1,16 +1,16 @@
-@mixin component-margin-styles() {
+@mixin margin-styles() {
   @include create-margins();
 }
 
-@mixin appended-component-margin-styles() {
+@mixin appended-margin-styles() {
   @include create-margins(true);
 }
 
-@mixin component-padding-styles() {
+@mixin padding-styles() {
   @include create-padding();
 }
 
-@mixin appended-component-padding-styles() {
+@mixin appended-padding-styles() {
   @include create-padding(true);
 }
 
