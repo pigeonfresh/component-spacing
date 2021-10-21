@@ -1,21 +1,21 @@
-$vertical: true;
-$logicalProperties: true;
+$vertical: true !default;
+$logicalProperties: true !default;
 
-$directionProperties: null;
+$directionProperties: null !default;
 
 $componentMargin: ();
 $componentPadding: ();
 
-$uniformSpacing: false;
-$variableSpacing: true;
-$defaultPadding: null;
-$defaultMargin: null;
+$uniformSpacing: false !default;
+$variableSpacing: true !default;
+$defaultPadding: null !default;
+$defaultMargin: null !default;
 
 $classNameConfig: (
   padding: 'padding',
   margin: 'margin',
   direction: 'start' 'end',
-);
+) !default;
 
 @if ($vertical) {
   @if ($logicalProperties) {
